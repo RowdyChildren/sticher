@@ -5,29 +5,23 @@ class Sticher(object):
     """a object that takes prestich files and adds the appropreate blocks to 
     them then outputs them to the output directory"""
     def __init__(self):
-        self.files = {}
-        self.blocks = {}
         self.block_path = ""
         self.file_path = ""
         self.out_path = ""
         self.matchblock = re.compile("\s*<\s*blockhtml\s*src=[\'\"].*[\'\"]\s*/>")
         self.read_config()
-        self.load_blocks()
-        self.load_files()
-    def load_files(self):
-        file_names = glob(self.file_path+"*.*")
-        file_contents = []
-        for f in file_names:
-            file_contents.append(open(f).read())
-            f =  f[len(self.file_path):]
-        self.files = dict(zip(file_names, file_contents))
-    def load_blocks(self):
-        block_names = glob(self.block_path+"*.*")
-        block_contents = []
-        for n in block_names:
-            block_contents.append(open(n).read())
-            n =  n[len(self.block_path):]
-        self.blocks = dict(zip(block_names, block_contents))
+        self.blocks = self.load(self.block_path)
+        self.files = self.load(self.file_path)
+    """find all files in a dir and loops thru them
+    geting all the file names and contents, then ziping
+    them to a dict """    
+    def load(self, dir):
+        names = glob(dir+"*.*")
+        contents = []
+        for n in names:
+            contents.append(open(n).read())
+            n =  n[len(dir):]
+        return dict(zip(names, contents))
     def read_config(self):
         config = json.loads(open("stichconf.json").read())
         self.file_path = config["file_path"]

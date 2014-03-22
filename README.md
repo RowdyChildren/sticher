@@ -5,7 +5,7 @@ a simple static site generator written in python
 
 looks for blocks of prewritten code
 looks thru the files in the prestich directory
-replaces "<blockhtml src="filename" />" tags with the text of the block with the file name
+replaces <pre><blockhtml src="filename" /></pre> tags with the text of the block with the file name
 puts that out in the output directory specified in the stichconf.json
 
 stichconf.json
