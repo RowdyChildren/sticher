@@ -7,6 +7,7 @@ looks for blocks of pre-written code
 looks threw the files in the prestich directory
 replaces `<blockhtml src="filename" />` tags with the text of the block with the file name
 puts that out in the output directory specified in the stichconf.json
+Its a really neat project
 
 stichconf.json
 	contains the file paths to the files needed to be stitched, the blocks, and the output directory
